@@ -1,71 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R7Q1KBXDRC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Grapevine</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  gtag('config', 'G-R7Q1KBXDRC');
-</script>
-    
-    <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" data-settings-id="_-p1nkn-JEJ3Oi" async></script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width" , initial-scale="1.0">
-    <title>My CMP Test Page</title>    
-    
-    <!-- Google Analytics -->
-    <script type="text/plain" data-usercentrics="Google Analytics">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-183442640-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f4f1eb;
+      color: #222;
+    }
 
-    <!-- Google Tag Manager -->
-    <script type="text/plain" data-usercentrics="Google Tag Manager">(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-W79GKZZZ');</script>
-    <!-- End Google Tag Manager -->
+    /* TOP BAR */
+    .topbar {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      font-size: 0.78rem;
+      padding: 6px 20px;
+      letter-spacing: 0.5px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .topbar a { color: #ccc; text-decoration: none; margin: 0 10px; }
+    .topbar a:hover { color: #fff; }
 
-    <!-- Facebook Pixel Code -->
-<script type="text/plain" data-usercentrics="Facebook Pixel">
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'ko1w5PpFl');
-  fbq('track', 'PageView');
-</script>
-<!-- End Facebook Pixel Code -->
-    
+    /* BANNER */
+    .banner {
+      background: #fdfaf4;
+      border-bottom: 3px double #222;
+      border-top: 3px double #222;
+      text-align: center;
+      padding: 24px 20px 16px;
+    }
+    .banner .dateline {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 6px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .banner h1 {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .banner .tagline {
+      font-style: italic;
+      color: #555;
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    /* NAV */
+    nav {
+      background: #2b2b2b;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-right: 1px solid #444;
+      transition: background 0.2s;
+    }
+    nav a:first-child { border-left: 1px solid #444; }
+    nav a:hover { background: #444; color: #fff; }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 36px;
+    }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      background: #222;
+      display: inline-block;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+
+    /* LEAD STORY */
+    .lead-story { border-bottom: 1px solid #ccc; padding-bottom: 24px; margin-bottom: 24px; }
+    .lead-story img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
+    }
+    .lead-story h2 {
+      font-size: 1.9rem;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .lead-story h2 a { text-decoration: none; color: #111; }
+    .lead-story h2 a:hover { text-decoration: underline; }
+    .lead-story .byline {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .lead-story p { font-size: 1rem; line-height: 1.7; color: #333; }
+    .lead-story .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.82rem;
+      color: #8b1a1a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .lead-story .read-more:hover { text-decoration: underline; }
+
+    /* SMALL STORIES */
+    .small-story {
+      display: flex;
+      gap: 14px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+    .small-story img {
+      width: 110px;
+      height: 80px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #ddd;
+    }
+    .small-story h3 { font-size: 1rem; margin-bottom: 4px; line-height: 1.3; }
+    .small-story h3 a { text-decoration: none; color: #111; }
+    .small-story h3 a:hover { text-decoration: underline; }
+    .small-story .byline {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.73rem;
+      color: #888;
+      margin-bottom: 5px;
+    }
+    .small-story p { font-size: 0.88rem; line-height: 1.6; color: #444; }
+
+    /* SIDEBAR */
+    .sidebar {}
+
+    .sidebar-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+    .sidebar-box h3 {
+      font-size: 1rem;
+      border-bottom: 2px solid #222;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.82rem;
+    }
+    .sidebar-box ul { list-style: none; }
+    .sidebar-box ul li {
+      border-bottom: 1px dotted #ddd;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .sidebar-box ul li:last-child { border-bottom: none; }
+    .sidebar-box ul li a { text-decoration: none; color: #222; }
+    .sidebar-box ul li a:hover { color: #8b1a1a; text-decoration: underline; }
+    .sidebar-box ul li .meta {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      color: #999;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .weather-box { text-align: center; }
+    .weather-box .icon { font-size: 2.5rem; }
+    .weather-box .temp { font-size: 2rem; font-weight: bold; margin: 4px 0; }
+    .weather-box .desc { font-size: 0.85rem; color: #666; font-family: 'Segoe UI', sans-serif; }
+
+    /* FOOTER */
+    footer {
+      background: #1a1a1a;
+      color: #888;
+      text-align: center;
+      padding: 24px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.82rem;
+      margin-top: 40px;
+    }
+    footer a { color: #aaa; margin: 0 8px; text-decoration: none; }
+    footer a:hover { color: #fff; }
+    footer p { margin-top: 8px; opacity: 0.5; font-size: 0.75rem; }
+  </style>
 </head>
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=W79GKZZZ" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <h1>Usercentrics CMP Test Page</h1>
-    This is a test page I'm using to implement my first Usercentrics CMP.
+  <!-- Top Bar -->
+  <div class="topbar">
+    <a href="#">Subscribe</a> |
+    <a href="#">e-Edition</a> |
+    <a href="#">Classifieds</a> |
+    <a href="#">Obituaries</a> |
+    <a href="#">Submit a Tip</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; Tuesday, March 3, 2026
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="dateline">Serving Maplewood County Since 1948</div>
+    <h1>The Grapevine</h1>
+    <div class="tagline">"All the news that's fit to print — and a little that isn't."</div>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Local News</a>
+    <a href="#">Sports</a>
+    <a href="#">Community</a>
+    <a href="#">Opinion</a>
+    <a href="#">Events</a>
+    <a href="#">Classifieds</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Left Column -->
+    <main>
+
+      <!-- Lead Story -->
+      <div class="lead-story">
+        <span class="section-label">Local News</span>
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Town Hall Meeting"/>
+        <h2><a href="#">Town Council Approves New Riverside Park Expansion After Years of Debate</a></h2>
+        <div class="byline">By Margaret Holloway &nbsp;·&nbsp; Staff Reporter &nbsp;·&nbsp; March 3, 2026</div>
+        <p>After more than three years of community discussions, public hearings, and a few heated town hall meetings, the Maplewood County Town Council voted 5–2 on Monday night to approve the long-anticipated expansion of Riverside Park. The project, which carries a budget of $1.4 million, will add walking trails, a new pavilion, and a restored wetlands area along the eastern bank.</p>
+        <a href="#" class="read-more">Continue Reading →</a>
+      </div>
+
+      <!-- Small Story 1 -->
+      <div class="small-story">
+        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=300&q=80" alt="School"/>
+        <div>
+          <div class="byline">Education &nbsp;·&nbsp; March 3, 2026</div>
+          <h3><a href="#">Maplewood Elementary Wins State Science Fair for Second Year Running</a></h3>
+          <p>Fifth-graders Lily Chen and Marcus Webb took home the gold medal at the state competition with their project on local water quality.</p>
+        </div>
+      </div>
+
+      <!-- Small Story 2 -->
+      <div class="small-story">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&q=80" alt="Food Festival"/>
+        <div>
+          <div class="byline">Community &nbsp;·&nbsp; March 2, 2026</div>
+          <h3><a href="#">Annual Harvest Festival Returns to Main Street This Weekend</a></h3>
+          <p>Dozens of local vendors, live bluegrass music, and the beloved pie contest are all set to return as the festival celebrates its 30th anniversary.</p>
+        </div>
+      </div>
+
+      <!-- Small Story 3 -->
+      <div class="small-story">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300&q=80" alt="Sports"/>
+        <div>
+          <div class="byline">Sports &nbsp;·&nbsp; March 2, 2026</div>
+          <h3><a href="#">Maplewood Mustangs Advance to Regional Championship After Overtime Thriller</a></h3>
+          <p>A last-second shot by junior guard Darnell Price lifted the Mustangs over rival Cedar Ridge 61–59 in a game that had the gym on its feet.</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Weather -->
+      <div class="sidebar-box weather-box">
+        <h3>Maplewood Weather</h3>
+        <div class="icon">⛅</div>
+        <div class="temp">54°F</div>
+        <div class="desc">Partly Cloudy · High 57° · Low 41°<br/>Chance of rain Thursday</div>
+      </div>
+
+      <!-- Most Read -->
+      <div class="sidebar-box">
+        <h3>Most Read</h3>
+        <ul>
+          <li>
+            <a href="#">Old Mill Bridge to Close for Repairs Starting Monday</a>
+            <span class="meta">Local News</span>
+          </li>
+          <li>
+            <a href="#">Letter to the Editor: A Word on the New Stop Signs</a>
+            <span class="meta">Opinion</span>
+          </li>
+          <li>
+            <a href="#">Recipe Corner: Mae Perkins' Famous Cornbread</a>
+            <span class="meta">Community</span>
+          </li>
+          <li>
+            <a href="#">Obituary: Harold "Bud" Simmons, 1939–2026</a>
+            <span class="meta">Obituaries</span>
+          </li>
+          <li>
+            <a href="#">Zoning Board Rejects Proposed Gas Station on Elm Ave.</a>
+            <span class="meta">Local News</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="sidebar-box">
+        <h3>Upcoming Events</h3>
+        <ul>
+          <li>
+            <a href="#">Harvest Festival — Main St.</a>
+            <span class="meta">Sat, Mar 7 · 10am–6pm</span>
+          </li>
+          <li>
+            <a href="#">Library Book Sale</a>
+            <span class="meta">Sun, Mar 8 · 9am–2pm</span>
+          </li>
+          <li>
+            <a href="#">Town Council Meeting</a>
+            <span class="meta">Mon, Mar 9 · 7pm</span>
+          </li>
+          <li>
+            <a href="#">Mustangs vs. Pineville — Home Game</a>
+            <span class="meta">Fri, Mar 13 · 6:30pm</span>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <a href="#">About Us</a>
+      <a href="#">Advertise</a>
+      <a href="#">Subscribe</a>
+      <a href="#">Archives</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Contact</a>
+    </div>
+    <p>© 2026 The Grapevine · Maplewood County, USA · Est. 1948</p>
+  </footer>
+
 </body>
-
 </html>
